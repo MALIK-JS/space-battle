@@ -1,28 +1,31 @@
 class Ship {
-    constructor (name, hull, firepower, accuracy) {
-      this.name = name
-      this.hull = hull
-      this.firepower = firepower
-      this.accuracy = accuracy
-    }
-    attack() {
-      // pseudocode 
-      // Loop attack alienShip until its hull is 0 
-      while (alienShip.hull > 0) {
-        // mainShip hull has to be greater than 0 in order to attack
-        if (mainShip.hull > 0){
-        alienShip.hull -= mainShip.firepower;
-        console.log(`Alien ship hull is ${alienShip.hull} out of 6.`);     
+  constructor (name, hull, firepower, accuracy) {
+    this.name = name
+    this.hull = hull
+    this.firepower = firepower
+    this.accuracy = accuracy
+  }
+  attack() {
+    // pseudocode 
+    // Loop attack alienShip until its hull is 0 
+    while (alienShip.hull > 0) {
+      // mainShip hull has to be greater than 0 in order to attack
+      if (mainShip.hull > 0 && Math.floor(Math.random()) < mainShip.accuracy){
+      alienShip.hull -= mainShip.firepower;
+      console.log(`Alien ship hull is ${alienShip.hull} out of 6.`);     
+      }
+      else if (alienShip.hull === 0){
+          console.log("Ship is destroyed");
         }
-        else if (alienShip.hull === 0){
-            console.log("Ship is destroyed");
-          }
-        // if () 
+      if (Math.random() < alienShip.accuracy){
         this.hull -= alienShip.firepower;
-        // console.log(this.hull)
+        console.log('You have been hit!');
       }
+      
+      // console.log(this.hull)
     }
-      }
+  }
+}
     //   // If mainShip dies
     //   if (mainShip.hull = 0) {
     //     console.log("Game Over");
@@ -40,12 +43,13 @@ class Ship {
     //       }
     //     }
 
-  
-const mainShip = new Ship ('USS HelloWorld', 20, 5, .7);
-const alienShip = new Ship ("Alien1", 6, 4, .8) //hardcoded values, how to make them between num1 - numb2 /
-// console.log(mainShip)
-mainShip.attack()
-console.log(`Hull health is ${mainShip.hull} out of 20.`)
+    let alienFirepower = Math.floor(Math.random() * (2 - 4 + 1)) + 2;
+    let alienAccuracy = Math.floor(Math.random() * (.6 - .8 + 1)) + .6;
+    const mainShip = new Ship('USS HelloWorld', 20, 5, .7);
+    const alienShip = new Ship("Alien1", 6, alienFirepower, alienAccuracy) //hardcoded values, how to make them between num1 - numb2 /
+    // console.log(mainShip)
+    mainShip.attack()
+    console.log(`Hull health is ${mainShip.hull} out of 20.`)
 
 
 
